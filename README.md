@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ### Escuela Colombiana de Ingeniería
 ### Arquitecturas de Software - ARSW
 ### Laboratorio - Broker de Mensajes STOMP con WebSockets + HTML5 Canvas.
@@ -137,3 +138,6 @@ Puede ajustar su cliente para que, además de eventos de mouse, [detecte eventos
 5. El API muestra los clientes que trabajan, o han trabajado en un determinado dibujo.
 4. En la implementación se tuvo en cuenta la naturaleza concurrente del ejercicio. Por ejemplo, si se mantiene el conjunto de los puntos recibidos en una colección, la misma debería ser de tipo concurrente (thread-safe).
 5. [Puntos opcionales] La aplicación acepta eventos táctiles.
+=======
+# SyncBoard
+>>>>>>> 4d243c16c27035aef45983dc0751f613e4731891
