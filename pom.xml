@@ -45,7 +45,6 @@
             <scope>test</scope>
         </dependency>
                 
-                
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>webjars-locator</artifactId>
