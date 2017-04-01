@@ -21,6 +21,15 @@ function disconnect() {
     console.log("Disconnected");
 }
 
+function direccionamiento(){
+    //var tipo = document.getElementById("#profesor").value;
+    //console.log("hola"+tipo);
+    console.log("no");
+    location.href = "profesor.html";
+    alert("pas");
+    location.href = "profesor.html";
+}
+
 
 $(document).ready(
         function () {
