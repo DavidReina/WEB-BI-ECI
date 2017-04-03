@@ -30,6 +30,7 @@ public class Correo {
         this.cedula_tipo=tipo;
     }
 
+
     /**
      * @return the correo
      */

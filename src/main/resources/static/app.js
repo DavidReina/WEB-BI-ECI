@@ -32,12 +32,20 @@ direccionamiento = function () {
 
 datosProfesor = function () {
 
-    Nombre = document.getElementById("nombre").value;
-    TI = document.getElementById("nti").value;
-    Carnet = document.getElementById("carnet").value;
-    Correo = document.getElementById("correo").value;
-    console.log("Holaaa");
+    var nombre = document.getElementById("nombre").value;
+    var ti = document.getElementById("TC").value;
+    var nti = document.getElementById("nti").value;
+    var carnet = document.getElementById("carnet").value;
+    var correo = document.getElementById("correo").value;
 
+/*
+    $.ajax({
+        url: "/Usuario",
+        type: 'PUT',
+        data: JSON.stringify(user),
+        contentType: "application/json"
+    });
+     */
 };
 
 

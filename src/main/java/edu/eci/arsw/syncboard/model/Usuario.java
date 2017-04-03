@@ -10,12 +10,27 @@ package edu.eci.arsw.syncboard.model;
  * @author 2103216
  */
 public class Usuario {
+
+    public Usuario(String nombre, String tipo, long cedula_numero, String cedula_tipo, Integer carnet, String correo) {
+        this.nombre = nombre;
+
+        this.tipo = tipo;
+        this.cedula_numero = cedula_numero;
+        this.cedula_tipo = cedula_tipo;
+        this.carnet = carnet;
+        this.correo = correo;
+    }
+
+    
     public String nombre;
     public String clave;
     //tipo de usuario si es Profesor o Estudiante
     public String tipo;
     public long cedula_numero;
     public String cedula_tipo;
+    public Integer carnet;
+    public String correo;
+    
 
     public String getNombre() {
         return nombre;

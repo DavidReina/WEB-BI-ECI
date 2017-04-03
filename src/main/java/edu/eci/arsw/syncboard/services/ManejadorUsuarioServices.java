@@ -22,11 +22,13 @@ public class ManejadorUsuarioServices {
     List<Usuario> empl=new LinkedList<>();
     List<Usuario> estu=new LinkedList<>();
  
-    public void RegistrarUsuario(String nombre ,String clave, String tipo, long cc, String ctipo, int carn, Correo cor){
+    public void RegistrarUsuario(String nombre, String tipo, long cedula_numero, String cedula_tipo, Integer carnet, String correo){
         Usuario us = null;
+        Correo email=null;
         if(tipo=="Profesor"){
-            us=new Profesor(carn, cor);
-            
+            //email = new Correo(correo, cedula_numero, tipo);
+            us=new Profesor(nombre,tipo,cedula_numero,cedula_tipo,carnet, correo);
+            empl.add(us);
         }else{
             //us=new Estudiante(carn, cor);
         }

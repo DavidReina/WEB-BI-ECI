@@ -9,26 +9,33 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="/webjars/jquery/jquery.min.js"></script>
+        <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+        <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+        <script src="/app.js"></script>
     </head>
-    <body background="http://www.hdfondos.eu/preview/get_photo/83357/2880/1800">
-        <img src="http://www.escuelaing.edu.co/uploads/descargables/4219_logo_vertical.jpg" ALIGN=left WIDTH=198 HEIGHT=200><br><br><br><br><br><br><br><br>
+    <body background="https://surveymonkey-assets.s3.amazonaws.com/survey/77381393/2a596edf-02e7-46bd-b896-96972ab3237a.png">
+        <img src="http://www.escuelaing.edu.co/uploads/descargables/4219_logo_vertical.jpg" ALIGN=left WIDTH=198 HEIGHT=200><br><br><br><br><br><br><br><br><br><br><br>
 
         <h1 id="Cabeza" >Bienvenido a SyncBoard <br>
         </h1>
+        <fieldset>
+            <h1 id="Cabeza" >Registro de profesor <br>
+            </h1>
+            <fieldset>
+                Nombre: <input id="nombre" class="nombre" type="text" placeholder="Nombre:"/><br>
 
-        <h1 id="Cabeza" >Registro de profesor <br>
-        </h1>
-
-        Nombre: <input id="nombre" class="nombre" type="text" placeholder="Nombre:"/>
-
-        <select name="TC">
-            <option selected value="0"> Tipo de identidad </option>
-            <option  id="Cedula" class="Cedula">Cedula</option> 
-            <option id="TI" class="TI">Tarjeta de identidad</option> 
-        </select><br>
-        Tipo de identidad <input id="nti" class="nti" type="text" placeholder="Numero"/><br>
-        Carnet: <input id="carnet" class="carnet" type="text" placeholder="Carnet universitario"/><br>
-        Correo: <input id="correo" class="correo" type="text" placeholder="Email"/><br>
+                <select name="TC" id="TC">
+                    <option selected value="0"> Tipo de identidad </option>
+                    <option  id="Cedula" class="Cedula">Cedula</option> 
+                    <option id="TI" class="TI">Tarjeta de identidad</option> 
+                </select><br>
+                Numero de documento <input id="nti" class="nti" type="text" placeholder="Numero"/><br>
+                Carnet: <input id="carnet" class="carnet" type="text" placeholder="Carnet universitario"/><br>
+                Correo: <input id="correo" class="correo" type="text" placeholder="Email"/><br>
+            </fieldset>
+        </fieldset>
+        <br>
         
         <button onclick="datosProfesor()" >Enviar</button>
 

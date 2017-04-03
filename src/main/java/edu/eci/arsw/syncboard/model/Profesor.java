@@ -11,15 +11,16 @@ import java.util.List;
  *
  * @author 2103216
  */
-public class Profesor extends Usuario{
-    
+public class Profesor extends Usuario {
+
     private List<Correo> CorreoProfesores;
     private int carnet;
-    
-    public Profesor(int carn, Correo cor){
-        this.carnet = carn;
-        this.CorreoProfesores.add(cor);
-        
+
+    public Profesor(String nombre, String tipo, long cedula_numero, String cedula_tipo, Integer carnet, String correo) {
+        super(nombre, tipo, cedula_numero, cedula_tipo, carnet, correo);
+        this.carnet = carnet;
+        Correo email = new Correo(correo,cedula_numero, cedula_tipo);
+        this.CorreoProfesores.add(email);
     }
 
     public List<Correo> getCorreoProfesores() {
@@ -37,6 +38,5 @@ public class Profesor extends Usuario{
     public void setCarnet(int carnet) {
         this.carnet = carnet;
     }
-    
-    
+
 }
