@@ -27,7 +27,15 @@ direccionamiento = function () {
     if (document.getElementById("tipop").value == "1") {
 
     } else
-        location.href = "profesor.html";
+        location.href = "Registroprofesor.html";
+};
+
+VistaProfesor = function (){
+    location.href= "VistaProfesor.html";
+};
+
+VistaClase = function (){
+    location.href = "Clase.html";
 };
 
 datosProfesor = function () {
