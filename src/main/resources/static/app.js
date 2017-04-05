@@ -41,31 +41,39 @@ VistaClase = function () {
 
 datosProfesor = function () {
 
+
+
     var nombre = document.getElementById("nombre").value;
     var ti = document.getElementById("TC").value;
     var nti = parseInt(document.getElementById("nti").value);
     var carnet = parseInt(document.getElementById("carnet").value);
     var correo = document.getElementById("correo").value;
 
-    //console.log(nombre + " Profesor " + nti, ti, carnet, correo);
+    if (nombre == "" || ti == "" || nti == "" || carnet == "" || correo == "") {
+        alert("Algunos de los campos esta vacios");
+    } else {
 
-    var user = {
-        "nombre": nombre,
-        "tipo": "Profesor",
-        "numeroDeDocuemnto": nti,
-        "tipoDeDocumento": ti,
-        "carnet": carnet,
-        "correo": correo
-    };
+        //console.log(nombre + " Profesor " + nti, ti, carnet, correo);
+
+        var user = {
+            "nombre": nombre,
+            "tipo": "Profesor",
+            "numeroDeDocuemnto": nti,
+            "tipoDeDocumento": ti,
+            "carnet": carnet,
+            "correo": correo
+        };
 
 
-    $.ajax({
-        url: "/Usuario/AgregarUsuario",
-        type: 'PUT',
-        data: JSON.stringify(user),
-        contentType: "application/json"
-    });
-
+        $.ajax({
+            url: "/Usuario/AgregarUsuario",
+            type: 'PUT',
+            data: JSON.stringify(user),
+            contentType: "application/json"
+        });
+        alert("Sus datos han sido Registrados   " + nombre + " en unos Momentos Enviaremos un correo indicado su usuario y contraseña");
+        location.href = "index.html";
+    }
 };
 
 getProfesor = function () {
@@ -82,11 +90,11 @@ getProfesor = function () {
     });
 };
 
-registrarClase = function (){
-    
+registrarClase = function () {
+
     alert("Su clase clase registrada");
     location.href = "Clase.html";
-    
+
 }
 
 $(document).ready(
