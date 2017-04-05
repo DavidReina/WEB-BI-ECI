@@ -28,7 +28,7 @@ public class ManejadorUsuarioServices {
         if(tipo=="Profesor"){
             //email = new Correo(correo, cedula_numero, tipo);
             us=new Profesor(nombre,tipo,cedula_numero,cedula_tipo,carnet, correo);
-            empl.add(us);
+
         }else{
             //us=new Estudiante(carn, cor);
         }
@@ -39,16 +39,8 @@ public class ManejadorUsuarioServices {
         empl.add(user);
     }
     
-    public Usuario getUsuario(int cedula){
-        Usuario u = null;
-        for(int x=0; x<=empl.size();x++){
-            if(empl.get(x).cedula_numero==cedula){
-                u=empl.get(x);
-                
-            }
-        }
-        
-        return u;
+    public List getUsuarios(){
+        return empl;
     }
     
     

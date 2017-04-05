@@ -30,11 +30,11 @@ direccionamiento = function () {
         location.href = "Registroprofesor.html";
 };
 
-VistaProfesor = function (){
-    location.href= "VistaProfesor.html";
+VistaProfesor = function () {
+    location.href = "VistaProfesor.html";
 };
 
-VistaClase = function (){
+VistaClase = function () {
     location.href = "Clase.html";
 };
 
@@ -42,21 +42,49 @@ datosProfesor = function () {
 
     var nombre = document.getElementById("nombre").value;
     var ti = document.getElementById("TC").value;
-    var nti = document.getElementById("nti").value;
-    var carnet = document.getElementById("carnet").value;
+    var nti = parseInt(document.getElementById("nti").value);
+    var carnet = parseInt(document.getElementById("carnet").value);
     var correo = document.getElementById("correo").value;
 
-/*
+    //console.log(nombre + " Profesor " + nti, ti, carnet, correo);
+
+    var user = {
+        "nombre": nombre,
+        "tipo": "Profesor",
+        "numeroDeDocuemnto": nti,
+        "tipoDeDocumento": ti,
+        "carnet": carnet,
+        "correo": correo
+    };
+
+
     $.ajax({
-        url: "/Usuario",
+        url: "/Usuario/AgregarUsuario",
         type: 'PUT',
         data: JSON.stringify(user),
         contentType: "application/json"
     });
-     */
+
 };
 
+getProfesor = function () {
 
+
+    $.get("/Usuario/getUsuario", function (data) {
+
+        for (x in data) {
+            if (x.carnet == document.getElementById("busprofe").value) {
+                var profe = x;
+            }
+        }
+        //console.log(profe);
+    });
+};
+
+registrarClase = function (){
+    
+    alert("clase registrada");
+}
 
 $(document).ready(
         function () {

@@ -29,9 +29,8 @@ public class APIRestUsuarioController {
 
     @Autowired
     ManejadorUsuarioServices manejador;
-    
-    
-        @RequestMapping(value ="/Usuario",method = RequestMethod.PUT)
+
+    @RequestMapping(value = "/AgregarUsuario", method = RequestMethod.PUT)
     public ResponseEntity<?> AgregarUsuario(@RequestBody Usuario user) {
         try {
             //registrar dato
@@ -40,18 +39,15 @@ public class APIRestUsuarioController {
         } catch (Exception ex) {
             Logger.getLogger(APIRestUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error bla bla bla", HttpStatus.FORBIDDEN);
-        }        
-    }
-    
- 
-    
-    @RequestMapping(value="/{cedula}",method = RequestMethod.GET)
-    public ResponseEntity<?> getUsuario() {
-            //Usuario u= manejador.
-            //obtener datos que se enviarán a través del API
-
-            return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
         }
-    
+    }
+
+    @RequestMapping(value = "/getUsuario", method = RequestMethod.GET)
+    public ResponseEntity<?> getUsuarios() {
+
+
+        return new ResponseEntity<>(manejador.getUsuarios(), HttpStatus.ACCEPTED);
+
+    }
 
 }
