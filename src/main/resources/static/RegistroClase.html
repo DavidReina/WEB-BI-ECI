@@ -20,10 +20,13 @@ and open the template in the editor.
         <fieldset>
         <h1 id="Cabeza" >Registre los datos de la Clase <br></h1>
         <fieldset>
-        Nombre de la clase:<input maxlength="25" size="25" name="username" id="username"/><br>
+        Nombre de la Clase*:<input maxlength="25" size="25" name="username" id="username"/><br>
+        Descripción de la clase*:<br><textarea name="comentarios" rows="10" cols="30" id="descripcion">Escribe una Breve descripción de la clase</textarea>
+        <br>Fecha* <br><br><input type="date" name="fecha" min="2017-01-01"
+                                 max="2020-12-30" id="fechaClase" required="required" >
         </fieldset>
         </fieldset><br>
-        <button onclick="registrarClase()" > Registar </button>
+        <button onclick="registrarClase()"  > Registar </button>
         <br />
     </body>
 </html>

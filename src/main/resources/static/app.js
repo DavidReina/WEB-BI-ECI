@@ -25,6 +25,7 @@ direccionamiento = function () {
     //var tipo = document.getElementById("#profesor").value;
     //console.log("hola"+tipo);
     if (document.getElementById("tipop").value == "1") {
+        location.href = "VistaEstudiante.html";
 
     } else
         location.href = "Registroprofesor.html";
@@ -83,7 +84,9 @@ getProfesor = function () {
 
 registrarClase = function (){
     
-    alert("clase registrada");
+    alert("Su clase clase registrada");
+    location.href = "Clase.html";
+    
 }
 
 $(document).ready(

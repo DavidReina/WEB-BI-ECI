@@ -27,10 +27,10 @@ public class STOMPMessagesHandler {
 
     @MessageMapping("/newpoint")
     public void getLine(Point pt) throws Exception {
-        System.out.println("Nuevo punto recibido en el servidor!:" + pt);
+        //System.out.println("Nuevo punto recibido en el servidor!:" + pt);
         msgt.convertAndSend("/topic/newpoint", pt);
         PointsPolygon.add(pt);
-        System.out.println("hygththttuyt");
+        //System.out.println("hygththttuyt");
         if (PointsPolygon.size() ==4) {
             
             msgt.convertAndSend("/topic/newpolygon", PointsPolygon);

@@ -5,12 +5,19 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
+<head>
+<title>Paint con HTML5</title>
+<meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+        <script src="/webjars/jquery/jquery.min.js"></script>
+        <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+        <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+        <script src="/tableroprueba.js"></script>
+</head>
+<body onload="prepareCanvas();">
+<canvas id="canvasEjemplo" width="800" height="600">
+</canvas><br>
+<input type="button" id="borrador" value="Borrar Todo" />
+
+</body>
 </html>
