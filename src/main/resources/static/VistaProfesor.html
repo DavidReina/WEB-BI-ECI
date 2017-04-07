@@ -7,17 +7,51 @@ and open the template in the editor.
 <html>
     <head>
         <title>Syncboard</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+        <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
         <script src="/webjars/jquery/jquery.min.js"></script>
         <script src="/webjars/sockjs-client/sockjs.min.js"></script>
         <script src="/webjars/stomp-websocket/stomp.min.js"></script>
         <script src="/app.js"></script>
     </head>
-    <body background="https://surveymonkey-assets.s3.amazonaws.com/survey/77381393/2a596edf-02e7-46bd-b896-96972ab3237a.png">
-        <img src="http://www.escuelaing.edu.co/uploads/descargables/4219_logo_vertical.jpg" ALIGN=left WIDTH=198 HEIGHT=200><br><br><br><br><br><br><br><br><br><br><br>
+
+    <body class="loading">
+        <div id="wrapper">
+            <div id="bg"></div>
+            <div id="overlay"></div>
+            <div id="main">
+
+                <!-- Header -->
+                <header id="header">
+        
+        
+        
+        <img src="http://www.escuelaing.edu.co/uploads/descargables/4219_logo_vertical.jpg" ALIGN=left WIDTH=198 HEIGHT=200>
         <h1 id="Cabeza" >Bienvenido a SyncBoard Profesor <br>
         </h1>
         <button  onclick="VistaClase()" >Iniciar Clase</button>
+        
+                        </header>
+                <footer id="footer">
+                    <span class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
+                </footer>
+
+            </div>
+        </div>
+        <script>
+    window.onload = function () {
+        document.body.className = '';
+    }
+    window.ontouchmove = function () {
+        return false;
+    }
+    window.onorientationchange = function () {
+        document.body.scrollTop = 0;
+    }
+        </script>
     </body>
 </html>

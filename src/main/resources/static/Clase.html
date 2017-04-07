@@ -6,21 +6,48 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>SyncBoard</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Syncboard</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+        <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
         <script src="/webjars/jquery/jquery.min.js"></script>
         <script src="/webjars/sockjs-client/sockjs.min.js"></script>
         <script src="/webjars/stomp-websocket/stomp.min.js"></script>
         <script src="/TableroApp.js"></script>
     </head>
-    <body>
-        <img src="http://www.escuelaing.edu.co/uploads/descargables/4219_logo_vertical.jpg" ALIGN=left WIDTH=198 HEIGHT=200><br><br><br><br><br><br><br><br><br><br><br>
-        <h1 id="Cabeza" >Bienvenido a SyncBoard Profesor <br></h1>
-        <button onclick="GenerarClase()">Registre los Datos de la Clase</button>
-        <button onclick="sendPoint()">send point</button>
-        <canvas id="myCanvas" width="800" height="600" style="border:1px solid blue"></canvas>
-        <canvas id="Figuras" width="600" height="400" style="border:1px solid blue"></canvas>
-    
+
+    <body class="loading">
+        <div id="wrapper">
+            <div id="bg"></div>
+            <div id="overlay"></div>
+            <div id="main">
+
+                <!-- Header -->
+                <header id="header"><br>
+        
+        <img src="http://www.escuelaing.edu.co/uploads/descargables/4219_logo_vertical.jpg" ALIGN=left WIDTH=198 HEIGHT=200><br>
+        <h1 id="Cabeza" >Bienvenido a SyncBoard Profesor <br><br></h1>
+        <canvas id="myCanvas" width="800" height="600" style="background-color:white;" ALIGN=left></canvas>
+        <canvas id="Figuras" width="600" height="400" style="background-color:white;"></canvas><br>
+        
+        <button onclick="GenerarClase()" >Registre los Datos de la Clase</button><br>
+        <button onclick="sendPoint()" >send point</button>
+        </header>
+            </div>
+        </div>
+        <script>
+    window.onload = function () {
+        document.body.className = '';
+    }
+    window.ontouchmove = function () {
+        return false;
+    }
+    window.onorientationchange = function () {
+        document.body.scrollTop = 0;
+    }
+        </script>
     </body>
 </html>
