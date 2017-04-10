@@ -6,7 +6,7 @@ deployment:
   staging:
     branch: master
     heroku: 
-      appname: syncboard-arsw
+      appname: pacific-badlands-81045
 
 test:
   post:
