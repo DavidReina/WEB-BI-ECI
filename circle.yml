@@ -6,7 +6,7 @@ deployment:
   staging:
     branch: master
     heroku: 
-      appname: pacific-badlands-81045
+      appname: powerful-ridge-36246
 
 test:
   post:
