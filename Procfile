@@ -1,1 +1,1 @@
-web:    java $JAVA_OPTS -jar target/websockets-msbroker-example-0.0.1-SNAPSHOT.jar --port $PORT target/*.jar
+web:   java -Dserver.port=$PORT -jar target/websockets-msbroker-example-0.0.1-SNAPSHOT.jar
