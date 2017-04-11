@@ -39,6 +39,10 @@ VistaClase = function () {
     location.href = "Clase.html";
 };
 
+Registro = function() {
+    location.href = "Login.html"
+}
+
 datosProfesor = function () {
 
 
