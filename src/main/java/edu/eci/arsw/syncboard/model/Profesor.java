@@ -13,30 +13,13 @@ import java.util.List;
  */
 public class Profesor extends Usuario {
 
-    private List<Correo> CorreoProfesores;
     private int carnet;
 
-    public Profesor(String nombre, String tipo, long cedula_numero, String cedula_tipo, Integer carnet, String correo) {
-        super(nombre, tipo, cedula_numero, cedula_tipo, carnet, correo);
+    public Profesor(String nombre, String tipo, long cedula_numero, String cedula_tipo, Integer carnet, String correo, String pass) {
+        super(nombre, tipo, cedula_numero, cedula_tipo, carnet, correo, pass);
         this.carnet = carnet;
-        Correo email = new Correo(correo,cedula_numero, cedula_tipo);
-        this.CorreoProfesores.add(email);
+
     }
 
-    public List<Correo> getCorreoProfesores() {
-        return CorreoProfesores;
-    }
-
-    public void setCorreoProfesores(List<Correo> CorreoProfesores) {
-        this.CorreoProfesores = CorreoProfesores;
-    }
-
-    public int getCarnet() {
-        return carnet;
-    }
-
-    public void setCarnet(int carnet) {
-        this.carnet = carnet;
-    }
 
 }

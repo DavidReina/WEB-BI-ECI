@@ -21,18 +21,25 @@ import java.util.LinkedList;
 public class ManejadorUsuarioServices {
     List<Usuario> empl=new LinkedList<>();
     List<Usuario> estu=new LinkedList<>();
+    List<Correo> correos=new LinkedList<>();
  
-    public void RegistrarUsuario(String nombre, String tipo, long cedula_numero, String cedula_tipo, Integer carnet, String correo){
+    public void RegistrarUsuario(String nombre, String tipo, long cedula_numero, String cedula_tipo, Integer carnet, String correo, String pass){
         Usuario us = null;
         Correo email=null;
         if(tipo=="Profesor"){
             //email = new Correo(correo, cedula_numero, tipo);
-            us=new Profesor(nombre,tipo,cedula_numero,cedula_tipo,carnet, correo);
-
+            us = new Profesor(nombre,tipo,cedula_numero,cedula_tipo,carnet, correo, pass);
+            email = new Correo(correo, tipo, pass);
         }else{
             //us=new Estudiante(carn, cor);
         }
+
         ingresoUsuario(us);
+        agregarCorreo(email);
+    }
+    
+    public void agregarCorreo(Correo email){
+        correos.add(email);
     }
     
     public void ingresoUsuario(Usuario user){
@@ -41,6 +48,12 @@ public class ManejadorUsuarioServices {
     
     public List getUsuarios(){
         return empl;
+    }
+    
+    
+    
+        public List getCorreos(){
+        return correos;
     }
     
     

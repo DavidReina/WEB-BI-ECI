@@ -5,6 +5,7 @@
  */
 package edu.eci.arsw.syncboard.controller;
 
+import edu.eci.arsw.syncboard.model.Correo;
 import edu.eci.arsw.syncboard.model.Usuario;
 import edu.eci.arsw.syncboard.services.ManejadorUsuarioServices;
 import java.util.logging.Level;
@@ -40,11 +41,29 @@ public class APIRestUsuarioController {
         }
     }
 
+    @RequestMapping(value = "/AgregarCorreo", method = RequestMethod.PUT)
+    public ResponseEntity<?> AgregarUsuario(@RequestBody Correo corr) {
+        try {
+            //registrar dato
+            manejador.agregarCorreo(corr);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(APIRestUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error bla bla bla", HttpStatus.FORBIDDEN);
+        }
+    }
+
     @RequestMapping(value = "/getUsuario", method = RequestMethod.GET)
     public ResponseEntity<?> getUsuarios() {
 
-
         return new ResponseEntity<>(manejador.getUsuarios(), HttpStatus.ACCEPTED);
+
+    }
+
+    @RequestMapping(value = "/getCorreo", method = RequestMethod.GET)
+    public ResponseEntity<?> getCorreos() {
+
+        return new ResponseEntity<>(manejador.getCorreos(), HttpStatus.ACCEPTED);
 
     }
 

@@ -14,26 +14,25 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nombre, String tipo, long cedula_numero, String cedula_tipo, Integer carnet, String correo) {
+    public Usuario(String nombre, String tipo, long cedula_numero, String cedula_tipo, Integer carnet, String correo, String pass) {
+        
         this.nombre = nombre;
-
         this.tipo = tipo;
         this.cedula_numero = cedula_numero;
         this.cedula_tipo = cedula_tipo;
         this.carnet = carnet;
         this.correo = correo;
+        this.pass = pass;
     }
 
     
     public String nombre;
-    public String clave;
-    //tipo de usuario si es Profesor o Estudiante
     public String tipo;
     public long cedula_numero;
     public String cedula_tipo;
     public Integer carnet;
     public String correo;
-    
+    public String pass;
 
     public String getNombre() {
         return nombre;
@@ -41,14 +40,6 @@ public class Usuario {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getClave() {
-        return clave;
-    }
-
-    public void setClave(String clave) {
-        this.clave = clave;
     }
 
     public String getTipo() {
@@ -74,6 +65,31 @@ public class Usuario {
     public void setCedula_tipo(String cedula_tipo) {
         this.cedula_tipo = cedula_tipo;
     }
+
+    public Integer getCarnet() {
+        return carnet;
+    }
+
+    public void setCarnet(Integer carnet) {
+        this.carnet = carnet;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+    
     
     
 }
