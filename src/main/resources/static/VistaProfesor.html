@@ -16,7 +16,7 @@ and open the template in the editor.
         <script src="/webjars/jquery/jquery.min.js"></script>
         <script src="/webjars/sockjs-client/sockjs.min.js"></script>
         <script src="/webjars/stomp-websocket/stomp.min.js"></script>
-        <script src="/app.js"></script>
+        <script src="/login.js"></script>
     </head>
 
     <body class="loading">
@@ -27,15 +27,22 @@ and open the template in the editor.
 
                 <!-- Header -->
                 <header id="header">
-        
-        
-        
-        <img src="http://www.escuelaing.edu.co/uploads/descargables/4219_logo_vertical.jpg" ALIGN=left WIDTH=198 HEIGHT=200>
-        <h1 id="Cabeza" >Bienvenido a SyncBoard Profesor <br>
-        </h1>
-        <button  onclick="VistaClase()" >Iniciar Clase</button>
-        
-                        </header>
+
+
+
+                    <img src="http://www.escuelaing.edu.co/uploads/descargables/4219_logo_vertical.jpg" ALIGN=left WIDTH=198 HEIGHT=200>
+                    <h1 id="Cabeza" >Bienvenido a SyncBoard Profesor <br>
+                    </h1>
+
+                    <select name="MC" id="MC" class="MC" onclick="misClases()" >
+                        <option selected value="0"> Mis Clases </option>
+                    </select>
+                    <button  onclick="claseSeleccionada()" >Ir</button>
+                    
+                    
+                    <button  onclick="VistaClase()" >Nueva Clase</button>
+
+                </header>
                 <footer id="footer">
                     <span class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
                 </footer>
@@ -43,15 +50,15 @@ and open the template in the editor.
             </div>
         </div>
         <script>
-    window.onload = function () {
-        document.body.className = '';
-    }
-    window.ontouchmove = function () {
-        return false;
-    }
-    window.onorientationchange = function () {
-        document.body.scrollTop = 0;
-    }
+            window.onload = function () {
+                document.body.className = '';
+            }
+            window.ontouchmove = function () {
+                return false;
+            }
+            window.onorientationchange = function () {
+                document.body.scrollTop = 0;
+            }
         </script>
     </body>
 </html>

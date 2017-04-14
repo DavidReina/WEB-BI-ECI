@@ -11,6 +11,13 @@ ingresar = function () {
     var pass = document.getElementById("Passwodlogin").value;
     var existe = false;
 
+    $.ajax({
+        url: "/Usuario/usuarioActual",
+        type: 'PUT',
+        data: JSON.stringify(email),
+        contentType: "application/json"
+    });
+
     $.get("/Usuario/getCorreo", function (data) {
 
         for (x in data) {
@@ -25,6 +32,59 @@ ingresar = function () {
     });
 };
 
+VistaClase = function () {
+    location.href = "Clase.html";
+};
+
+registrarClase = function () {
+
+
+
+    var nclase = document.getElementById("nameClass").value;
+    var descripcion = document.getElementById("descripcion").value;
+
+    $.get("/Usuario/getUserActual", function (data) {
+
+        var clase = {
+            "NomUsuario": data,
+            "NombreClase": nclase,
+            "DescripcionClase": descripcion
+        };
+
+        $.ajax({
+            url: "/Usuario/agregarClase",
+            type: 'PUT',
+            data: JSON.stringify(clase),
+            contentType: "application/json"
+        });
+    });
+
+    alert("Su clase ha sido registrada");
+    location.href = "VistaProfesor.html";
+};
+
+misClases = function () {
+    $.get("/Usuario/getUserActual", function (user) {
+        $.get("/Usuario/getClases", function (data) {
+            var cadena = "<select name='MC' id='MC' class='MC'><option selected value='0'> Mis Clases </option>";
+            for (x in data) {
+                if (data[x].NomUsuario == user) {
+                    cadena = cadena + "<option value='" + data[x].NombreClase + "'>" + data[x].NombreClase + "</option>";
+                }
+            }
+            cadena = cadena + "</select>";
+            $("#MC").replaceWith(cadena);
+        });
+    });
+};
+
+claseSeleccionada = function () {
+    
+    var p = document.getElementById("MC").value;
+    if(p==0){
+        alert("Seleccione una de las opciones");
+    }
+};
 
 $(document).ready(function () {
     $('.log-btn').click(function () {

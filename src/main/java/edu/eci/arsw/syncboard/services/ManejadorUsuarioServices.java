@@ -5,6 +5,7 @@
  */
 package edu.eci.arsw.syncboard.services;
 
+import edu.eci.arsw.syncboard.model.Clase;
 import edu.eci.arsw.syncboard.model.Correo;
 import edu.eci.arsw.syncboard.model.Profesor;
 import edu.eci.arsw.syncboard.model.Usuario;
@@ -19,42 +20,60 @@ import java.util.LinkedList;
  */
 @Service
 public class ManejadorUsuarioServices {
-    List<Usuario> empl=new LinkedList<>();
-    List<Usuario> estu=new LinkedList<>();
-    List<Correo> correos=new LinkedList<>();
- 
-    public void RegistrarUsuario(String nombre, String tipo, long cedula_numero, String cedula_tipo, Integer carnet, String correo, String pass){
+
+    List<Usuario> empl = new LinkedList<>();
+    List<Usuario> estu = new LinkedList<>();
+    List<Correo> correos = new LinkedList<>();
+    List<Clase> clases = new LinkedList<>();
+    public String userActual;
+
+    public String getUserActual() {
+        return userActual;
+    }
+
+    public void setUserActual(String userActual) {
+        this.userActual = userActual;
+    }
+
+    public void RegistrarUsuario(String nombre, String tipo, long cedula_numero, String cedula_tipo, Integer carnet, String correo, String pass) {
         Usuario us = null;
-        Correo email=null;
-        if(tipo=="Profesor"){
+        Correo email = null;
+        if (tipo == "Profesor") {
             //email = new Correo(correo, cedula_numero, tipo);
-            us = new Profesor(nombre,tipo,cedula_numero,cedula_tipo,carnet, correo, pass);
+            us = new Profesor(nombre, tipo, cedula_numero, cedula_tipo, carnet, correo, pass);
             email = new Correo(correo, tipo, pass);
-        }else{
+        } else {
             //us=new Estudiante(carn, cor);
         }
 
         ingresoUsuario(us);
         agregarCorreo(email);
     }
-    
-    public void agregarCorreo(Correo email){
+
+    public void agregarCorreo(Correo email) {
         correos.add(email);
     }
-    
-    public void ingresoUsuario(Usuario user){
+
+    public void ingresoUsuario(Usuario user) {
         empl.add(user);
     }
     
-    public List getUsuarios(){
+    public List getUsuarios() {
         return empl;
     }
-    
-    
-    
-        public List getCorreos(){
+
+    public void agregarClase(Clase clase) {
+        clases.add(clase);
+    }
+
+    public List getClases() {
+        return clases;
+    }
+
+    public List getCorreos() {
         return correos;
     }
     
-    
+
+
 }

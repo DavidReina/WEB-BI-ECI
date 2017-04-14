@@ -5,6 +5,7 @@
  */
 package edu.eci.arsw.syncboard.controller;
 
+import edu.eci.arsw.syncboard.model.Clase;
 import edu.eci.arsw.syncboard.model.Correo;
 import edu.eci.arsw.syncboard.model.Usuario;
 import edu.eci.arsw.syncboard.services.ManejadorUsuarioServices;
@@ -51,6 +52,42 @@ public class APIRestUsuarioController {
             Logger.getLogger(APIRestUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error bla bla bla", HttpStatus.FORBIDDEN);
         }
+    }
+
+    @RequestMapping(value = "/agregarClase", method = RequestMethod.PUT)
+    public ResponseEntity<?> agregarClase(@RequestBody Clase clase) {
+        try {
+            manejador.agregarClase(clase);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(APIRestUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error bla bla bla", HttpStatus.FORBIDDEN);
+        }
+    }
+
+        @RequestMapping(value = "/usuarioActual", method = RequestMethod.PUT)
+    public ResponseEntity<?> setUserActual(@RequestBody String name) {
+        try {
+            manejador.setUserActual(name);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(APIRestUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error bla bla bla", HttpStatus.FORBIDDEN);
+        }
+    }
+    
+    @RequestMapping(value = "/getUserActual", method = RequestMethod.GET)
+    public ResponseEntity<?> getUserActual() {
+
+        return new ResponseEntity<>(manejador.getUserActual(), HttpStatus.ACCEPTED);
+
+    }
+    
+    @RequestMapping(value = "/getClases", method = RequestMethod.GET)
+    public ResponseEntity<?> getClases() {
+
+        return new ResponseEntity<>(manejador.getClases(), HttpStatus.ACCEPTED);
+
     }
 
     @RequestMapping(value = "/getUsuario", method = RequestMethod.GET)

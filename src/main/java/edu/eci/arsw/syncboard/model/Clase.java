@@ -10,8 +10,18 @@ package edu.eci.arsw.syncboard.model;
  * @author 2103216
  */
 public class Clase {
-    private String NombreClase;
-    private long DescripcionClase;
+    
+    public String NomUsuario;
+    public String NombreClase;
+    public String DescripcionClase;
+    
+    public String getNomUsuario() {
+        return NomUsuario;
+    }
+
+    public void setNomUsuario(String NomUsuario) {
+        this.NomUsuario = NomUsuario;
+    }
 
     public String getNombreClase() {
         return NombreClase;
@@ -21,15 +31,15 @@ public class Clase {
         this.NombreClase = NombreClase;
     }
 
-    public long getDescripcionClase() {
+    public String getDescripcionClase() {
         return DescripcionClase;
     }
 
-    public void setDescripcionClase(long DescripcionClase) {
+    public void setDescripcionClase(String DescripcionClase) {
         this.DescripcionClase = DescripcionClase;
     }
     
-    
+}
  /*
     Ayuda CANVAS:
     <body onmousemove="pintar(event)" style="margin:0;padding:0;">
@@ -56,5 +66,5 @@ public class Clase {
 
 </script>
     */
-    
-}
+
+

@@ -1,4 +1,5 @@
 var stompClient = null;
+
 function connect() {
     var socket = new SockJS('/stompendpoint');
     stompClient = Stomp.over(socket);
@@ -30,9 +31,7 @@ direccionamiento = function () {
 VistaProfesor = function () {
     location.href = "VistaProfesor.html";
 };
-VistaClase = function () {
-    location.href = "Clase.html";
-};
+
 Registro = function () {
     location.href = "Login.html"
 }
@@ -53,7 +52,6 @@ datosProfesor = function () {
         if (nombre == "" || ti == "" || nti == "" || carnet == "" || correo == "" || pass == "" || pass2 == "") {
             alert("Algunos de los campos esta vacios");
         } else {
-            alert("su tipo de correo es" +ti);
             var user = {
                 "nombre": nombre,
                 "tipo": "Profesor",
@@ -83,8 +81,8 @@ datosProfesor = function () {
                 data: JSON.stringify(email),
                 contentType: "application/json"
             });
-            
-            alert("Sus datos han sido Registrados  " + nombre );
+
+            alert("Sus datos han sido Registrados  " + nombre);
             location.href = "Login.html";
         }
     }
@@ -103,11 +101,8 @@ getProfesor = function () {
         //console.log(profe);
     });
 };
-registrarClase = function () {
 
-    alert("Su clase clase registrada");
-    location.href = "Clase.html";
-}
+
 
 $(document).ready(
         function () {
