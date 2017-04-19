@@ -25,6 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
         <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
         <script src="/webjars/jquery/jquery.min.js"></script>
+        <link href="styles.css" rel="stylesheet" type="text/css" />
         <script src="/webjars/sockjs-client/sockjs.min.js"></script>
         <script src="/webjars/stomp-websocket/stomp.min.js"></script>
         <script src="/app.js"></script>
@@ -53,7 +54,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         <legend>Ingrese su tipo de usuario</legend>
 
                         <select id="tipop" class="tipop" name="OS">
-                            <option selected value="0"> Elige una opción </option>
+                            <option id="opcion" selected value="0"> Elige una opción </option>
                             <option value="1" id="estudiante" class="estudiante">Estudiante</option> 
                             <option value="2" id="profesor" class="profesor">Profesor</option> 
                         </select>

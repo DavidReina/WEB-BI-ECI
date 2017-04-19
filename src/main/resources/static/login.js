@@ -33,7 +33,7 @@ ingresar = function () {
 };
 
 VistaClase = function () {
-    location.href = "Clase.html";
+    location.href = "RegistroClase.html";
 };
 
 registrarClase = function () {
@@ -83,6 +83,8 @@ claseSeleccionada = function () {
     var p = document.getElementById("MC").value;
     if(p==0){
         alert("Seleccione una de las opciones");
+    }else{
+        location.href = "ClaseP.html";
     }
 };
 

@@ -32,6 +32,9 @@ flagPaint=!flagPaint;
 actualPos=obtenerCoordenadas(event);
 };
 
+irClase = function () {
+    location.href = "ClaseE.html";
+};
 pintarLinea = function (event){
 if(flagPaint){
 var coordenadas=obtenerCoordenadas(event);
@@ -93,7 +96,7 @@ function connect() {
 sendPoint = function () {
 
     stompClient.send("/app/newpoint", {}, JSON.stringify({x: x, y: y}));
-}
+};
 function disconnect() {
     if (stompClient != null) {
         stompClient.disconnect();
@@ -101,9 +104,7 @@ function disconnect() {
     setConnected(false);
     console.log("Disconnected");
 }
-GenerarClase = function (){
-    location.href = "RegistroClase.html";
-};
+
 function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
     return {
@@ -121,12 +122,12 @@ $(document).ready(
             canvas = document.getElementById('myCanvas');
             context = canvas.getContext('2d');
 
-            canvas.addEventListener('mousedown', function (evt) {
+            canvas.addEventListener('mousemove', function (evt) {
                 var mousePos = getMousePos(canvas, evt);
                 x = mousePos.x;
                 y = mousePos.y;
                 sendPoint();
-                prepareCanvas();
+                
                 //stompClient.send("/app/newpoint", {}, JSON.stringify({x: x, y: y}));
                 var mensaje = 'Position' + mousePos.x + mousePos.y;
 

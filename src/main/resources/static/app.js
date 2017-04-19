@@ -33,8 +33,8 @@ VistaProfesor = function () {
 };
 
 Registro = function () {
-    location.href = "Login.html"
-}
+    location.href = "Login.html";
+};
 
 datosProfesor = function () {
     var nombre = document.getElementById("nombre").value;
