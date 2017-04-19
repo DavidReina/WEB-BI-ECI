@@ -26,6 +26,7 @@ public class ManejadorUsuarioServices {
     List<Correo> correos = new LinkedList<>();
     List<Clase> clases = new LinkedList<>();
     public String userActual;
+    public String claseActual;
 
     public String getUserActual() {
         return userActual;
@@ -33,6 +34,14 @@ public class ManejadorUsuarioServices {
 
     public void setUserActual(String userActual) {
         this.userActual = userActual;
+    }
+    
+        public String getClaseActual() {
+        return claseActual;
+    }
+
+    public void setClaseActual(String claseActual) {
+        this.claseActual = claseActual;
     }
 
     public void RegistrarUsuario(String nombre, String tipo, long cedula_numero, String cedula_tipo, Integer carnet, String correo, String pass) {

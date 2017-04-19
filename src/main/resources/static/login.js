@@ -86,6 +86,16 @@ claseSeleccionada = function () {
     }else{
         location.href = "ClaseP.html";
     }
+    console.log(p);
+    
+    $.ajax({
+            url: "/Usuario/claseActual",
+            type: 'PUT',
+            data: JSON.stringify(p),
+            contentType: "application/json"
+        });
+    
+    
 };
 
 $(document).ready(function () {

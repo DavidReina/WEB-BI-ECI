@@ -83,6 +83,25 @@ public class APIRestUsuarioController {
 
     }
     
+            @RequestMapping(value = "/claseActual", method = RequestMethod.PUT)
+    public ResponseEntity<?> setClaseActual(@RequestBody String name) {
+        try {
+            manejador.setClaseActual(name);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(APIRestUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error bla bla bla", HttpStatus.FORBIDDEN);
+        }
+    }
+    
+    
+        @RequestMapping(value = "/getClaseActual", method = RequestMethod.GET)
+    public ResponseEntity<?> getClaseActual() {
+
+        return new ResponseEntity<>(manejador.getClaseActual(), HttpStatus.ACCEPTED);
+
+    }
+    
     @RequestMapping(value = "/getClases", method = RequestMethod.GET)
     public ResponseEntity<?> getClases() {
 
