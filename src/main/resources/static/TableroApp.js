@@ -18,6 +18,8 @@ prepareCanvas = function () {
     canvas = document.getElementById("myCanvas");
     ctx = canvas.getContext("2d"); // obtenemos el contexto ( dibujar en 2d)
     canvasLimites = canvas.getBoundingClientRect(); // obtenemos los limites del canvas
+    
+    
     canvas.addEventListener('mousedown', cambiarEstado, false);
     canvas.addEventListener('mouseup', cambiarEstado, false);
     canvas.addEventListener('mousemove', pintarLinea, false);
@@ -132,6 +134,13 @@ description = function () {
     });
 };
 
+hc = function () {
+    flagPaint = !flagPaint;
+};
+
+nc = function () {
+    flagPaint = !flagPaint;
+};
 
 $(document).ready(
         function () {
@@ -140,15 +149,21 @@ $(document).ready(
             canvas = document.getElementById('myCanvas');
             context = canvas.getContext('2d');
 
-            canvas.addEventListener('mousemove', function (evt) {
-                var mousePos = getMousePos(canvas, evt);
+    canvas.addEventListener('mousedown', hc, false);
+    canvas.addEventListener('mouseup', nc, false);
+    canvas.addEventListener('mousemove', function (evt) {
+        if(flagPaint==false){
+            
+        }else{
+            var mousePos = getMousePos(canvas, evt);
                 x = mousePos.x;
                 y = mousePos.y;
                 sendPoint();
 
                 //stompClient.send("/app/newpoint", {}, JSON.stringify({x: x, y: y}));
                 var mensaje = 'Position' + mousePos.x + mousePos.y;
-
+        } 
             }, false);
+
         }
 );
