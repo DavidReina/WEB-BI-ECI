@@ -24,7 +24,7 @@ direccionamiento = function () {
 //var tipo = document.getElementById("#profesor").value;
 //console.log("hola"+tipo);
     if (document.getElementById("tipop").value == "1") {
-        location.href = "VistaEstudiante.html";
+        location.href = "RegistroEstudiante.html";
     } else
         location.href = "Registroprofesor.html";
 };
@@ -35,6 +35,60 @@ VistaProfesor = function () {
 Registro = function () {
     location.href = "Login.html";
 };
+
+
+datosEstudiante = function () {
+    var nombre = document.getElementById("nombre").value;
+    var ti = document.getElementById("TC").value;
+    var nti = parseInt(document.getElementById("nti").value);
+    var carnet = parseInt(document.getElementById("carnet").value);
+    var correo = document.getElementById("correo").value;
+    var pass = document.getElementById("pass").value;
+    var pass2 = document.getElementById("pass2").value;
+
+
+    if (pass != pass2) {
+        alert("Las contraseñas son diferentes");
+    } else {
+        if (nombre == "" || ti == "" || nti == "" || carnet == "" || correo == "" || pass == "" || pass2 == "") {
+            alert("Algunos de los campos esta vacios");
+        } else {
+            var user = {
+                "nombre": nombre,
+                "tipo": "Estudiante",
+                "numeroDeDocumento": nti,
+                "tipoDeDocumento": ti,
+                "carnet": carnet,
+                "correo": correo,
+                "pass": pass
+            };
+
+            var email = {
+                "correo": correo,
+                "tipo": "Estudiante",
+                "pass": pass
+            };
+
+            $.ajax({
+                url: "/Usuario/AgregarUsuario",
+                type: 'PUT',
+                data: JSON.stringify(user),
+                contentType: "application/json"
+            });
+
+            $.ajax({
+                url: "/Usuario/AgregarCorreo",
+                type: 'PUT',
+                data: JSON.stringify(email),
+                contentType: "application/json"
+            });
+
+            alert("Sus datos han sido Registrados  " + nombre);
+            location.href = "Login.html";
+        }
+    }
+};
+
 
 datosProfesor = function () {
     var nombre = document.getElementById("nombre").value;

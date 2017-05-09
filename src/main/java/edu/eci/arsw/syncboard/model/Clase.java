@@ -5,6 +5,9 @@
  */
 package edu.eci.arsw.syncboard.model;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  *
  * @author 2103216
@@ -14,6 +17,15 @@ public class Clase {
     public String NomUsuario;
     public String NombreClase;
     public String DescripcionClase;
+    public List<String> Estudiantes = new LinkedList<>();
+
+    public List<String> getEstudiantes() {
+        return Estudiantes;
+    }
+
+    public void setEstudiantes(List<String> Estudiantes) {
+        this.Estudiantes = Estudiantes;
+    }
     
     public String getNomUsuario() {
         return NomUsuario;

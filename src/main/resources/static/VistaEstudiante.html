@@ -17,7 +17,7 @@ and open the template in the editor.
         <script src="/webjars/jquery/jquery.min.js"></script>
         <script src="/webjars/sockjs-client/sockjs.min.js"></script>
         <script src="/webjars/stomp-websocket/stomp.min.js"></script>
-        <script src="/TableroApp.js"></script>
+        <script src="/login.js"></script>
     </head>
 
     <body class="loading">
@@ -28,23 +28,27 @@ and open the template in the editor.
 
                 <!-- Header -->
                 <header id="header"><br>
-        
-        <img src="http://www.escuelaing.edu.co/uploads/descargables/4219_logo_vertical.jpg" ALIGN=left WIDTH=198 HEIGHT=200><br>
-        <h1 id="Cabeza" >Bienvenido a SyncBoard Estudiante <br><br></h1>
-        <button onclick="irClase()"  align=center> Ir a Clase </button>
-        </header>
+
+                    <img src="http://www.escuelaing.edu.co/uploads/descargables/4219_logo_vertical.jpg" ALIGN=left WIDTH=198 HEIGHT=200><br>
+                    <h1 id="Cabeza" >Bienvenido a SyncBoard Estudiante <br><br></h1>
+                    <select name="MC" id="MC" class="MC" onclick="misClasesE()" >
+                        <option  selected value="0"> Cursos Disponibles </option>
+                    </select>
+                    <button  onclick="detalles()" >Detalles</button>
+                    <button  onclick="claseSeleccionadaE()" >Inscribirme a esta clase</button>
+                </header>
             </div>
         </div>
         <script>
-    window.onload = function () {
-        document.body.className = '';
-    }
-    window.ontouchmove = function () {
-        return false;
-    }
-    window.onorientationchange = function () {
-        document.body.scrollTop = 0;
-    }
+            window.onload = function () {
+                document.body.className = '';
+            }
+            window.ontouchmove = function () {
+                return false;
+            }
+            window.onorientationchange = function () {
+                document.body.scrollTop = 0;
+            }
         </script>
     </body>
 </html>

@@ -20,12 +20,12 @@ miLienzo.style.cursor="hand";
 
 borrador=document.getElementById("borrador");
 borrador.addEventListener('click',erase,false);
-}
+};
 
 cambiarEstado= function (){
 flagPaint=!flagPaint;
 actualPos=obtenerCoordenadas(event);
-}
+};
 
 pintarLinea = function (event){
 if(flagPaint){
@@ -40,7 +40,7 @@ y:coordenadas.y
 contexto.strokeStyle = "#000"; // color de la linea
 contexto.stroke(); // dibujamos la linea
 }
-}
+};
 
 obtenerCoordenadas= function (event){
 var posX;
@@ -58,16 +58,8 @@ posY = event.clientY - canvasLimites.top;
 return {x:posX,
 y:posY
 };
-}
+};
 
 erase = function (){
 contexto.clearRect(0, 0, miLienzo.width, miLienzo.height);
-}
-
-
-
-
-
-
-            
-            
+};

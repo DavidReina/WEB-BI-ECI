@@ -142,6 +142,10 @@ nc = function () {
     flagPaint = !flagPaint;
 };
 
+VerEstudiantes = function(){
+    alert("hola");
+};
+
 $(document).ready(
         function () {
             connect();

@@ -17,7 +17,7 @@ and open the template in the editor.
         <script src="/webjars/jquery/jquery.min.js"></script>
         <script src="/webjars/sockjs-client/sockjs.min.js"></script>
         <script src="/webjars/stomp-websocket/stomp.min.js"></script>
-        <script src="/TableroApp.js"></script>
+        <script src="/login.js"></script>
     </head>
 
     <body class="loading">
@@ -28,27 +28,27 @@ and open the template in the editor.
 
                 <!-- Header -->
                 <header id="header"><br>
-        
-        <canvas id="myCanvas" width="1700" height="700" style="background-color:white;" align=left ></canvas><br>
-        <button onclick="description()"  align=center>Descripcion de la Clase</button><br><br>
-        <button onclick="erase()"  align=center>Borrar Apuntes </button>
-        <button onclick="connect()"  align=center>Habilitar Apuntes Para Estudiantes </button>
-        <button onclick="disconnect()"  align=center>Deshabilitar Apuntes Para Estudiantes </button>
-        <button onclick="VerEstudiantes()"  align=center>Estudiantes Inscritos </button>
-        
-        </header>
+
+                    <img src="http://www.escuelaing.edu.co/uploads/descargables/4219_logo_vertical.jpg" ALIGN=left WIDTH=198 HEIGHT=200><br>
+                    <h1 id="Cabeza" >Bienvenido a SyncBoard Estudiante <br><br></h1>
+                    <select name="MC" id="MC" class="MC" onclick="verMisCursos()" >
+                        <option  selected value="0"> Mis Clases </option>
+                    </select>
+                    <button  onclick="detalles()" >Detalles</button>
+                    <button  onclick="claseSeleccionadaE()" >Ir</button>
+                </header>
             </div>
         </div>
         <script>
-    window.onload = function () {
-        document.body.className = '';
-    }
-    window.ontouchmove = function () {
-        return false;
-    }
-    window.onorientationchange = function () {
-        document.body.scrollTop = 0;
-    }
+            window.onload = function () {
+                document.body.className = '';
+            }
+            window.ontouchmove = function () {
+                return false;
+            }
+            window.onorientationchange = function () {
+                document.body.scrollTop = 0;
+            }
         </script>
     </body>
 </html>
