@@ -83,6 +83,13 @@ public class ManejadorUsuarioServices {
         return correos;
     }
     
-
-
+    public void adjuntarEstudiante(){
+        System.out.println(userActual+ claseActual);
+        for (int i = 0; i < clases.size(); i++) {
+            if(clases.get(i).NombreClase==claseActual){
+                clases.get(i).Estudiantes.add(userActual);
+            }
+        }
+    }
+    
 }

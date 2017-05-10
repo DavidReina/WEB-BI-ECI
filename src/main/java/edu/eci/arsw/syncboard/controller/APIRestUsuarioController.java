@@ -65,6 +65,19 @@ public class APIRestUsuarioController {
         }
     }
 
+    
+            @RequestMapping(value = "/adjuntarEstudiante", method = RequestMethod.PUT)
+    public ResponseEntity<?> adjuntarEstudiante() {
+        try {
+            manejador.adjuntarEstudiante();
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(APIRestUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error bla bla bla", HttpStatus.FORBIDDEN);
+        }
+    }
+    
+    
         @RequestMapping(value = "/usuarioActual", method = RequestMethod.PUT)
     public ResponseEntity<?> setUserActual(@RequestBody String name) {
         try {

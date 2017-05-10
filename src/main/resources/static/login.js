@@ -23,10 +23,10 @@ ingresar = function () {
         for (x in data) {
             if (data[x].correo == email && data[x].pass == pass) {
                 existe = true;
-                if(data[x].tipo=="Estudiante"){
+                if (data[x].tipo == "Estudiante") {
                     location.href = "EntradaEstudiante.html";
-                }else
-                location.href = "VistaProfesor.html";
+                } else
+                    location.href = "VistaProfesor.html";
             }
         }
         if (!existe) {
@@ -36,16 +36,16 @@ ingresar = function () {
 };
 
 
-MisCursos = function(){
+MisCursos = function () {
     location.href = "MisClases.html";
 };
 
-BuscarCurso = function (){
+BuscarCurso = function () {
     location.href = "VistaEstudiante.html";
 };
 
-verMisCursos = function (){
-    
+verMisCursos = function () {
+
 };
 
 ingresarEstudiante = function () {
@@ -155,22 +155,35 @@ claseSeleccionada = function () {
 };
 
 claseSeleccionadaE = function () {
-    
+
     var p = document.getElementById("MC").value;
-    alert("Se ha registrado correctamente a la clase "+p);
+    alert("Se ha registrado correctamente a la clase " + p);
     if (p == 0) {
         alert("Seleccione una de las opciones");
     } else {
-        location.href = "ClaseE.html";
-    }
-    console.log(p);
 
-    $.ajax({
-        url: "/Usuario/claseActual",
-        type: 'PUT',
-        data: JSON.stringify(p),
-        contentType: "application/json"
-    });
+        var promesa = $.ajax({
+            url: "/Usuario/claseActual",
+            type: 'PUT',
+            data: JSON.stringify(p),
+            contentType: "application/json"
+        });
+
+        promesa.then(
+                function () {
+                    $.ajax({
+                        url: "/Usuario/adjuntarEstudiante",
+                        type: 'PUT',
+                        data: JSON.stringify(),
+                        contentType: "application/json"
+                    });
+                },
+                function(){
+                    alert("NO");
+                }
+        );
+    }
+
 };
 
 
