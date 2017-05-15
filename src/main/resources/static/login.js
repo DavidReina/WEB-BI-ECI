@@ -45,6 +45,18 @@ BuscarCurso = function () {
 };
 
 verMisCursos = function () {
+        $.get("/Usuario/getUserActual", function (user) {
+        $.get("/Usuario/getClases", function (data) {
+            var cadena = "<select name='MC' id='MC' class='MC'><option selected value='0'> Mis Clases </option>";
+            for (x in data) {
+                if (data[x].NomUsuario == user) {
+                    cadena = cadena + "<option value='" + data[x].NombreClase + "'>" + data[x].NombreClase + "</option>";
+                }
+            }
+            cadena = cadena + "</select>";
+            $("#MC").replaceWith(cadena);
+        });
+    });
 
 };
 
@@ -158,6 +170,7 @@ claseSeleccionadaE = function () {
 
     var p = document.getElementById("MC").value;
     alert("Se ha registrado correctamente a la clase " + p);
+    
     if (p == 0) {
         alert("Seleccione una de las opciones");
     } else {

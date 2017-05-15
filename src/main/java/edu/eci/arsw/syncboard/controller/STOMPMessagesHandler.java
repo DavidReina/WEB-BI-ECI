@@ -9,6 +9,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
@@ -31,13 +32,17 @@ public class STOMPMessagesHandler {
         msgt.convertAndSend("/topic/newpoint", pt);
         PointsPolygon.add(pt);
         //System.out.println("hygththttuyt");
-        if (PointsPolygon.size() ==4) {
-            
-            msgt.convertAndSend("/topic/newpolygon", PointsPolygon);
-            npoints = 0 ;
-            PointsPolygon.clear();
+
+    }
+
+    @MessageMapping("/newdibujo.{iddibujo}")
+    public void handleBaz(@DestinationVariable int iddibujo, Point pt) {
+        synchronized (this) {
+            System.out.println("Punto de la sala:" + iddibujo + pt);
+            msgt.convertAndSend("/topic/newdibujo." + iddibujo, pt);
+            PointsPolygon.add(pt);
         }
-        
+
     }
 
 }
