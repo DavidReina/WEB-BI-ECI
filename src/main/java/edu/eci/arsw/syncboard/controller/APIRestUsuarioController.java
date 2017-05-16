@@ -9,11 +9,14 @@ import edu.eci.arsw.syncboard.model.Clase;
 import edu.eci.arsw.syncboard.model.Correo;
 import edu.eci.arsw.syncboard.model.Usuario;
 import edu.eci.arsw.syncboard.services.ManejadorUsuarioServices;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/Usuario")
 public class APIRestUsuarioController {
+    private HashMap<String, ArrayList<String>> lista = new HashMap<>();
 
     @Autowired
     ManejadorUsuarioServices manejador;
@@ -77,29 +81,30 @@ public class APIRestUsuarioController {
         }
     }
     
-    /*
-    @RequestMapping(path = "/{iddibujo}", method = RequestMethod.PUT)
-    public ResponseEntity<?> manejadorPutRecursoOrdenes(@PathVariable int iddibujo, @RequestBody String nombre) {
+    
+    @RequestMapping(path = "/{nclase}", method = RequestMethod.PUT)
+    public ResponseEntity<?> manejadorPutRecursoOrdenes(@PathVariable String nclase, @RequestBody String name) {
         try{
-            System.out.println("hooooooola"+nombre+iddibujo);
-            if (lista.containsKey(iddibujo)) {
-                ArrayList<String> temp = lista.get(iddibujo);
-                temp.add(nombre);
-                lista.put(iddibujo, temp);
+            manejador.adjuntarEstudiante(name);
+        
+            if (lista.containsKey(nclase)) {
+                ArrayList<String> temp = lista.get(nclase);
+                temp.add(name);
+                lista.put(nclase, temp);
             } else {
                 ArrayList<String> temp = new ArrayList<>();
-                temp.add(nombre);
-                lista.put(iddibujo, temp);
+                temp.add(name);
+                lista.put(nclase, temp);
             }
 
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         } catch (Exception ex) {
-            Logger.getLogger(ApiController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(APIRestUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.FORBIDDEN);
         }
 
     }
-    */
+    
     
         @RequestMapping(value = "/usuarioActual", method = RequestMethod.PUT)
     public ResponseEntity<?> setUserActual(@RequestBody String name) {

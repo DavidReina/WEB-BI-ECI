@@ -13,13 +13,12 @@ var canvasLimites; // los margenes del canvas
 var flagPaint = false; // nos dice si pintar o no
 var actualPos; // la posición actual donde hice click
 
-
 prepareCanvas = function () {
     canvas = document.getElementById("myCanvas");
     ctx = canvas.getContext("2d"); // obtenemos el contexto ( dibujar en 2d)
     canvasLimites = canvas.getBoundingClientRect(); // obtenemos los limites del canvas
-    
-    
+
+
     canvas.addEventListener('mousedown', cambiarEstado, false);
     canvas.addEventListener('mouseup', cambiarEstado, false);
     canvas.addEventListener('mousemove', pintarLinea, false);
@@ -80,8 +79,13 @@ function connect() {
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
-
-        stompClient.subscribe('/topic/newpoint', function (data) {
+        console.log("Ya tengo los datossssssssssssssssssssssssssssssssssss");
+            $.get("/Usuario/getClaseActual", function (clase) {
+                var s = clase.substr(1, clase.length - 2);
+           
+                
+            
+        stompClient.subscribe('/topic/newdibujo.'+s, function (data) {
 
             theObject = JSON.parse(data.body);
             var ctx = canvas.getContext('2d');
@@ -95,11 +99,16 @@ function connect() {
 
 
 
-    });
+    });});
 }
 sendPoint = function () {
-    stompClient.send("/app/newpoint", {}, JSON.stringify({x: x, y: y}));
+     $.get("/Usuario/getClaseActual", function (clase) {
+                var s = clase.substr(1, clase.length - 2);
+                
+    stompClient.send("/app/newdibujo."+s, {}, JSON.stringify({x: x, y: y}));
+     });
 };
+
 function disconnect() {
     if (stompClient != null) {
         stompClient.disconnect();
@@ -142,22 +151,22 @@ nc = function () {
     flagPaint = !flagPaint;
 };
 
-VerEstudiantes = function(){
-    
-        $.get("/Usuario/getClaseActual", function (clase) {
+VerEstudiantes = function () {
+
+    $.get("/Usuario/getClaseActual", function (clase) {
         $.get("/Usuario/getClases", function (data) {
-            var estu=[];
+            var estu = [];
             for (x in data) {
                 var s = clase.substr(1, clase.length - 2);
-                
+
                 if (data[x].NombreClase == s) {
-                    for(index in data[x].Estudiantes){
-                        estu=estu+data[x].Estudiantes[index]+"\n";
+                    for (index in data[x].Estudiantes) {
+                        estu = estu + data[x].Estudiantes[index] + "\n";
                     }
-                    
+
                 }
             }
-            alert("Estudiantes Inscritos en esta materia\n\n"+estu);
+            alert("Estudiantes Inscritos en esta materia\n\n" + estu);
         });
     });
 
@@ -169,21 +178,20 @@ $(document).ready(
             console.info('connecting to websockets');
             canvas = document.getElementById('myCanvas');
             context = canvas.getContext('2d');
+            canvas.addEventListener('mousedown', hc, false);
+            canvas.addEventListener('mouseup', nc, false);
+            canvas.addEventListener('mousemove', function (evt) {
+                if (flagPaint == false) {
 
-    canvas.addEventListener('mousedown', hc, false);
-    canvas.addEventListener('mouseup', nc, false);
-    canvas.addEventListener('mousemove', function (evt) {
-        if(flagPaint==false){
-            
-        }else{
-            var mousePos = getMousePos(canvas, evt);
-                x = mousePos.x;
-                y = mousePos.y;
-                sendPoint();
+                } else {
+                    var mousePos = getMousePos(canvas, evt);
+                    x = mousePos.x;
+                    y = mousePos.y;
+                    sendPoint();
 
-                //stompClient.send("/app/newpoint", {}, JSON.stringify({x: x, y: y}));
-                var mensaje = 'Position' + mousePos.x + mousePos.y;
-        } 
+                    //stompClient.send("/app/newpoint", {}, JSON.stringify({x: x, y: y}));
+                    var mensaje = 'Position' + mousePos.x + mousePos.y;
+                }
             }, false);
 
         }

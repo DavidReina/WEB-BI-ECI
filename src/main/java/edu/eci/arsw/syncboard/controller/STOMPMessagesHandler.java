@@ -35,11 +35,10 @@ public class STOMPMessagesHandler {
 
     }
 
-    @MessageMapping("/newdibujo.{iddibujo}")
-    public void handleBaz(@DestinationVariable int iddibujo, Point pt) {
+    @MessageMapping("/newdibujo.{nclase}")
+    public void handleBaz(@DestinationVariable String nclase, Point pt) {
         synchronized (this) {
-            System.out.println("Punto de la sala:" + iddibujo + pt);
-            msgt.convertAndSend("/topic/newdibujo." + iddibujo, pt);
+            msgt.convertAndSend("/topic/newdibujo." + nclase, pt);
             PointsPolygon.add(pt);
         }
 

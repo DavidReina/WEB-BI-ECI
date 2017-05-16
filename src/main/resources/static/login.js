@@ -51,7 +51,6 @@ verMisCursos = function () {
             var cadena = "<select name='MC' id='MC' class='MC'><option selected value='0'> Mis Clases </option>";
             for (x in data) {
                 var s = user.substr(1, user.length - 2);
-
                 for (k in data[x].Estudiantes) {
                     if (s == data[x].Estudiantes[k]) {
                         cadena = cadena + "<option value='" + data[x].NombreClase + "'>" + data[x].NombreClase + "</option>";
@@ -198,7 +197,7 @@ claseSeleccionadaE = function () {
             promesa.then(
                     function () {
                         $.ajax({
-                            url: "/Usuario/adjuntarEstudiante",
+                            url: "/Usuario/"+p,
                             type: 'PUT',
                             data: JSON.stringify(user),
                             contentType: "application/json"
