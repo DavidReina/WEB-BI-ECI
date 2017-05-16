@@ -35,8 +35,8 @@ public class ManejadorUsuarioServices {
     public void setUserActual(String userActual) {
         this.userActual = userActual;
     }
-    
-        public String getClaseActual() {
+
+    public String getClaseActual() {
         return claseActual;
     }
 
@@ -66,7 +66,7 @@ public class ManejadorUsuarioServices {
     public void ingresoUsuario(Usuario user) {
         empl.add(user);
     }
-    
+
     public List getUsuarios() {
         return empl;
     }
@@ -82,14 +82,15 @@ public class ManejadorUsuarioServices {
     public List getCorreos() {
         return correos;
     }
-    
-    public void adjuntarEstudiante(){
-        System.out.println(userActual+ claseActual);
+
+    public void adjuntarEstudiante(String name) {
         for (int i = 0; i < clases.size(); i++) {
-            if(clases.get(i).NombreClase==claseActual){
-                clases.get(i).Estudiantes.add(userActual);
+            String s = claseActual.substring(1, claseActual.length() - 1);
+            if (clases.get(i).NombreClase.equals(s)) {
+                String sub = userActual.substring(1, userActual.length() - 1);
+                clases.get(i).setEstudiantes(sub);
             }
         }
     }
-    
+
 }

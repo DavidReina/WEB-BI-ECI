@@ -45,13 +45,19 @@ BuscarCurso = function () {
 };
 
 verMisCursos = function () {
-        $.get("/Usuario/getUserActual", function (user) {
+    $.get("/Usuario/getUserActual", function (user) {
         $.get("/Usuario/getClases", function (data) {
+
             var cadena = "<select name='MC' id='MC' class='MC'><option selected value='0'> Mis Clases </option>";
             for (x in data) {
-                if (data[x].NomUsuario == user) {
-                    cadena = cadena + "<option value='" + data[x].NombreClase + "'>" + data[x].NombreClase + "</option>";
+                var s = user.substr(1, user.length - 2);
+
+                for (k in data[x].Estudiantes) {
+                    if (s == data[x].Estudiantes[k]) {
+                        cadena = cadena + "<option value='" + data[x].NombreClase + "'>" + data[x].NombreClase + "</option>";
+                    }
                 }
+
             }
             cadena = cadena + "</select>";
             $("#MC").replaceWith(cadena);
@@ -103,7 +109,8 @@ registrarClase = function () {
         var clase = {
             "NomUsuario": data,
             "NombreClase": nclase,
-            "DescripcionClase": descripcion
+            "DescripcionClase": descripcion,
+            "Estudiantes": []
         };
 
         $.ajax({
@@ -166,37 +173,43 @@ claseSeleccionada = function () {
     });
 };
 
+entrarClase = function (){
+    location.href = "ClaseE.html";
+};
+
 claseSeleccionadaE = function () {
 
     var p = document.getElementById("MC").value;
-    alert("Se ha registrado correctamente a la clase " + p);
-    
-    if (p == 0) {
-        alert("Seleccione una de las opciones");
-    } else {
+    $.get("/Usuario/getUserActual", function (user) {
 
-        var promesa = $.ajax({
-            url: "/Usuario/claseActual",
-            type: 'PUT',
-            data: JSON.stringify(p),
-            contentType: "application/json"
-        });
+        alert("Se ha registrado correctamente a la clase " + p);
 
-        promesa.then(
-                function () {
-                    $.ajax({
-                        url: "/Usuario/adjuntarEstudiante",
-                        type: 'PUT',
-                        data: JSON.stringify(),
-                        contentType: "application/json"
-                    });
-                },
-                function(){
-                    alert("NO");
-                }
-        );
-    }
+        if (p == 0) {
+            alert("Seleccione una de las opciones");
+        } else {
 
+            var promesa = $.ajax({
+                url: "/Usuario/claseActual",
+                type: 'PUT',
+                data: JSON.stringify(p),
+                contentType: "application/json"
+            });
+
+            promesa.then(
+                    function () {
+                        $.ajax({
+                            url: "/Usuario/adjuntarEstudiante",
+                            type: 'PUT',
+                            data: JSON.stringify(user),
+                            contentType: "application/json"
+                        });
+                    },
+                    function () {
+                        alert("NO");
+                    }
+            );
+        }
+    });
 };
 
 
@@ -210,7 +223,10 @@ detalles = function () {
         $.get("/Usuario/getClases", function (data) {
             for (x in data) {
                 if (data[x].NombreClase == p) {
-                    var detalle = "Profesor: " + data[x].NomUsuario;
+                    var nomx = data[x].NomUsuario;
+                    var s = nomx.substr(1, nomx.length - 2);
+
+                    var detalle = "Profesor: " + s;
                     detalle = detalle + "\nDetalles: " + data[x].DescripcionClase;
                     alert(detalle);
                 }

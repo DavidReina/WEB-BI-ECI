@@ -17,14 +17,14 @@ public class Clase {
     public String NomUsuario;
     public String NombreClase;
     public String DescripcionClase;
-    public List<String> Estudiantes = new LinkedList<>();
+    public List<String> Estudiantes;
 
     public List<String> getEstudiantes() {
         return Estudiantes;
     }
 
-    public void setEstudiantes(List<String> Estudiantes) {
-        this.Estudiantes = Estudiantes;
+    public void setEstudiantes(String x) {
+        this.Estudiantes.add(x);
     }
     
     public String getNomUsuario() {

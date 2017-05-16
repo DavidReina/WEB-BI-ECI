@@ -67,9 +67,9 @@ public class APIRestUsuarioController {
 
     
             @RequestMapping(value = "/adjuntarEstudiante", method = RequestMethod.PUT)
-    public ResponseEntity<?> adjuntarEstudiante() {
+    public ResponseEntity<?> adjuntarEstudiante(@RequestBody String name) {
         try {
-            manejador.adjuntarEstudiante();
+            manejador.adjuntarEstudiante(name);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(APIRestUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
@@ -77,6 +77,29 @@ public class APIRestUsuarioController {
         }
     }
     
+    /*
+    @RequestMapping(path = "/{iddibujo}", method = RequestMethod.PUT)
+    public ResponseEntity<?> manejadorPutRecursoOrdenes(@PathVariable int iddibujo, @RequestBody String nombre) {
+        try{
+            System.out.println("hooooooola"+nombre+iddibujo);
+            if (lista.containsKey(iddibujo)) {
+                ArrayList<String> temp = lista.get(iddibujo);
+                temp.add(nombre);
+                lista.put(iddibujo, temp);
+            } else {
+                ArrayList<String> temp = new ArrayList<>();
+                temp.add(nombre);
+                lista.put(iddibujo, temp);
+            }
+
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(ApiController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.FORBIDDEN);
+        }
+
+    }
+    */
     
         @RequestMapping(value = "/usuarioActual", method = RequestMethod.PUT)
     public ResponseEntity<?> setUserActual(@RequestBody String name) {

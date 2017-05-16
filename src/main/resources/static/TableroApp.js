@@ -144,16 +144,20 @@ nc = function () {
 
 VerEstudiantes = function(){
     
-    alert("hola");
         $.get("/Usuario/getClaseActual", function (clase) {
         $.get("/Usuario/getClases", function (data) {
+            var estu=[];
             for (x in data) {
                 var s = clase.substr(1, clase.length - 2);
-                console.log(data[x].NombreClase, s);
+                
                 if (data[x].NombreClase == s) {
-                    console.log(data[x].Estudiantes);
+                    for(index in data[x].Estudiantes){
+                        estu=estu+data[x].Estudiantes[index]+"\n";
+                    }
+                    
                 }
             }
+            alert("Estudiantes Inscritos en esta materia\n\n"+estu);
         });
     });
 
