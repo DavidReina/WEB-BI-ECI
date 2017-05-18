@@ -40,6 +40,10 @@ MisCursos = function () {
     location.href = "MisClases.html";
 };
 
+regresar = function () {
+    location.href = "EntradaEstudiante.html";
+};
+
 BuscarCurso = function () {
     location.href = "VistaEstudiante.html";
 };
@@ -182,7 +186,6 @@ claseSeleccionadaE = function () {
     $.get("/Usuario/getUserActual", function (user) {
 
         alert("Se ha registrado correctamente a la clase " + p);
-        location.href = "EntradaEstudiante.html";
 
         if (p == 0) {
             alert("Seleccione una de las opciones");
