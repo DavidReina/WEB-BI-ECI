@@ -86,7 +86,7 @@ function connect() {
                 
             
         stompClient.subscribe('/topic/newdibujo.'+s, function (data) {
-
+            console.log("newdibujo");
             theObject = JSON.parse(data.body);
             var ctx = canvas.getContext('2d');
             ctx.beginPath();
