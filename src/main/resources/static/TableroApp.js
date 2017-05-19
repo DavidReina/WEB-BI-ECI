@@ -79,7 +79,7 @@ function connect() {
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
-        console.log("Ya tengo los datossssssssssssssssssssssssssssssssssss");
+        //console.log("Ya tengo los datossssssssssssssssssssssssssssssssssss");
             $.get("/Usuario/getClaseActual", function (clase) {
                 var s = clase.substr(1, clase.length - 2);
            
