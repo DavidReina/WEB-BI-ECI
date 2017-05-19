@@ -17,8 +17,12 @@ prepareCanvas = function () {
     canvas = document.getElementById("myCanvas");
     ctx = canvas.getContext("2d"); // obtenemos el contexto ( dibujar en 2d)
     canvasLimites = canvas.getBoundingClientRect(); // obtenemos los limites del canvas
-
-
+    ctx.lineWidth = 1;
+            if(Math.random()==0){
+                context.strokeStyle = '#3B83BD';
+            }else{
+                context.strokeStyle = '#CC0605';
+            }
     canvas.addEventListener('mousedown', cambiarEstado, false);
     canvas.addEventListener('mouseup', cambiarEstado, false);
     canvas.addEventListener('mousemove', pintarLinea, false);
@@ -46,7 +50,11 @@ pintarLinea = function (event) {
             x: coordenadas.x,
             y: coordenadas.y
         };
-        ctx.strokeStyle = "#000"; // color de la linea
+            if(Math.random()==0){
+                context.strokeStyle = '#3B83BD';
+            }else{
+                context.strokeStyle = '#CC0605';
+            } // color de la linea
         ctx.stroke(); // dibujamos la linea
     }
 };
@@ -80,12 +88,13 @@ function connect() {
     stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
         //console.log("Ya tengo los datossssssssssssssssssssssssssssssssssss");
-            $.get("/Usuario/getClaseActual", function (clase) {
-                var s = clase.substr(1, clase.length - 2);
-           
-                
-            
-        stompClient.subscribe('/topic/newdibujo.'+s, function (data) {
+
+        clase = sessionStorage.getItem("clase");
+
+
+
+
+        stompClient.subscribe('/topic/newdibujo.' + clase, function (data) {
             console.log("newdibujo");
             theObject = JSON.parse(data.body);
             var ctx = canvas.getContext('2d');
@@ -96,17 +105,13 @@ function connect() {
 
 
         });
-
-
-
-    });});
+    });
 }
 sendPoint = function () {
-     $.get("/Usuario/getClaseActual", function (clase) {
-                var s = clase.substr(1, clase.length - 2);
-                
-    stompClient.send("/app/newdibujo."+s, {}, JSON.stringify({x: x, y: y}));
-     });
+
+    clase = sessionStorage.getItem("clase");
+
+    stompClient.send("/app/newdibujo." + clase, {}, JSON.stringify({x: x, y: y}));
 };
 
 function disconnect() {
@@ -127,19 +132,17 @@ function getMousePos(canvas, evt) {
 
 
 description = function () {
-    $.get("/Usuario/getClaseActual", function (clase) {
-        $.get("/Usuario/getClases", function (data) {
 
-            for (x in data) {
+    clase = sessionStorage.getItem("clase");
+    $.get("/Usuario/getClases", function (data) {
 
-                var s = clase.substr(1, clase.length - 2);
+        for (x in data) {
 
-                if (data[x].NombreClase == s) {
-                    alert(data[x].DescripcionClase);
-                }
+
+            if (data[x].NombreClase == clase) {
+                alert(data[x].DescripcionClase);
             }
-
-        });
+        }
     });
 };
 
@@ -153,21 +156,18 @@ nc = function () {
 
 VerEstudiantes = function () {
 
-    $.get("/Usuario/getClaseActual", function (clase) {
-        $.get("/Usuario/getClases", function (data) {
-            var estu = [];
-            for (x in data) {
-                var s = clase.substr(1, clase.length - 2);
-
-                if (data[x].NombreClase == s) {
-                    for (index in data[x].Estudiantes) {
-                        estu = estu + data[x].Estudiantes[index] + "\n";
-                    }
-
+    clase = sessionStorage.getItem("clase");
+    $.get("/Usuario/getClases", function (data) {
+        var estu = [];
+        for (x in data) {
+            if (data[x].NombreClase == clase) {
+                for (index in data[x].Estudiantes) {
+                    estu = estu + data[x].Estudiantes[index] + "\n";
                 }
+
             }
-            alert("Estudiantes Inscritos en esta materia\n\n" + estu);
-        });
+        }
+        alert("Estudiantes Inscritos en esta materia\n\n" + estu);
     });
 
 };
@@ -178,6 +178,13 @@ $(document).ready(
             console.info('connecting to websockets');
             canvas = document.getElementById('myCanvas');
             context = canvas.getContext('2d');
+            if(Math.random()==1){
+                context.strokeStyle = '#3B83BD';
+            }else{
+                context.strokeStyle = '#CC0605';
+            }
+
+            context.lineWidth = 1;
             canvas.addEventListener('mousedown', hc, false);
             canvas.addEventListener('mouseup', nc, false);
             canvas.addEventListener('mousemove', function (evt) {

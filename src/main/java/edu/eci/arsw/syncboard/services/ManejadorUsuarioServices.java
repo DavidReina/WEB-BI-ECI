@@ -25,24 +25,7 @@ public class ManejadorUsuarioServices {
     List<Usuario> estu = new LinkedList<>();
     List<Correo> correos = new LinkedList<>();
     List<Clase> clases = new LinkedList<>();
-    public String userActual;
-    public String claseActual;
 
-    public String getUserActual() {
-        return userActual;
-    }
-
-    public void setUserActual(String userActual) {
-        this.userActual = userActual;
-    }
-
-    public String getClaseActual() {
-        return claseActual;
-    }
-
-    public void setClaseActual(String claseActual) {
-        this.claseActual = claseActual;
-    }
 
     public void RegistrarUsuario(String nombre, String tipo, long cedula_numero, String cedula_tipo, Integer carnet, String correo, String pass) {
         Usuario us = null;
@@ -83,12 +66,12 @@ public class ManejadorUsuarioServices {
         return correos;
     }
 
-    public void adjuntarEstudiante(String name) {
+    public void adjuntarEstudiante(String claseActual, String userActual) {
         for (int i = 0; i < clases.size(); i++) {
-            String s = claseActual.substring(1, claseActual.length() - 1);
-            if (clases.get(i).NombreClase.equals(s)) {
-                String sub = userActual.substring(1, userActual.length() - 1);
-                clases.get(i).setEstudiantes(sub);
+
+            if (clases.get(i).NombreClase.equals(claseActual)) {
+
+                clases.get(i).setEstudiantes(userActual);
             }
         }
     }

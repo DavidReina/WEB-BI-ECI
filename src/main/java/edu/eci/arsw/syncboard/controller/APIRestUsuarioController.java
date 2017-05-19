@@ -73,7 +73,7 @@ public class APIRestUsuarioController {
             @RequestMapping(value = "/adjuntarEstudiante", method = RequestMethod.PUT)
     public ResponseEntity<?> adjuntarEstudiante(@RequestBody String name) {
         try {
-            manejador.adjuntarEstudiante(name);
+            //manejador.adjuntarEstudiante(name);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(APIRestUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
@@ -85,7 +85,7 @@ public class APIRestUsuarioController {
     @RequestMapping(path = "/{nclase}", method = RequestMethod.PUT)
     public ResponseEntity<?> manejadorPutRecursoOrdenes(@PathVariable String nclase, @RequestBody String name) {
         try{
-            manejador.adjuntarEstudiante(name);
+            manejador.adjuntarEstudiante(nclase, name);
         
             if (lista.containsKey(nclase)) {
                 ArrayList<String> temp = lista.get(nclase);
@@ -105,43 +105,7 @@ public class APIRestUsuarioController {
 
     }
     
-    
-        @RequestMapping(value = "/usuarioActual", method = RequestMethod.PUT)
-    public ResponseEntity<?> setUserActual(@RequestBody String name) {
-        try {
-            manejador.setUserActual(name);
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
-        } catch (Exception ex) {
-            Logger.getLogger(APIRestUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error bla bla bla", HttpStatus.FORBIDDEN);
-        }
-    }
-    
-    @RequestMapping(value = "/getUserActual", method = RequestMethod.GET)
-    public ResponseEntity<?> getUserActual() {
 
-        return new ResponseEntity<>(manejador.getUserActual(), HttpStatus.ACCEPTED);
-
-    }
-    
-            @RequestMapping(value = "/claseActual", method = RequestMethod.PUT)
-    public ResponseEntity<?> setClaseActual(@RequestBody String name) {
-        try {
-            manejador.setClaseActual(name);
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
-        } catch (Exception ex) {
-            Logger.getLogger(APIRestUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error bla bla bla", HttpStatus.FORBIDDEN);
-        }
-    }
-    
-    
-        @RequestMapping(value = "/getClaseActual", method = RequestMethod.GET)
-    public ResponseEntity<?> getClaseActual() {
-
-        return new ResponseEntity<>(manejador.getClaseActual(), HttpStatus.ACCEPTED);
-
-    }
     
     @RequestMapping(value = "/getClases", method = RequestMethod.GET)
     public ResponseEntity<?> getClases() {

@@ -10,13 +10,7 @@ ingresar = function () {
     var email = document.getElementById("UserNamelogin").value;
     var pass = document.getElementById("Passwodlogin").value;
     var existe = false;
-
-    $.ajax({
-        url: "/Usuario/usuarioActual",
-        type: 'PUT',
-        data: JSON.stringify(email),
-        contentType: "application/json"
-    });
+    sessionStorage.setItem("usuario", email);
 
     $.get("/Usuario/getCorreo", function (data) {
 
@@ -49,24 +43,26 @@ BuscarCurso = function () {
 };
 
 verMisCursos = function () {
-    $.get("/Usuario/getUserActual", function (user) {
-        $.get("/Usuario/getClases", function (data) {
 
-            var cadena = "<select name='MC' id='MC' class='MC'><option selected value='0'> Mis Clases </option>";
-            for (x in data) {
-                var s = user.substr(1, user.length - 2);
-                for (k in data[x].Estudiantes) {
-                    if (s == data[x].Estudiantes[k]) {
-                        cadena = cadena + "<option value='" + data[x].NombreClase + "'>" + data[x].NombreClase + "</option>";
-                    }
+    user = sessionStorage.getItem("usuario");
+    $.get("/Usuario/getClases", function (data) {
+        console.log(data);
+        var cadena = "<select name='MC' id='MC' class='MC'><option selected value='0'> Mis Clases </option>";
+        for (x in data) {
+
+            for (k in data[x].Estudiantes) {
+                var nomestu = data[x].Estudiantes[k];
+                var re = nomestu.substr(1, nomestu.length - 2);
+                console.log(user, re);
+                if (user == re) {
+                    cadena = cadena + "<option value='" + data[x].NombreClase + "'>" + data[x].NombreClase + "</option>";
                 }
-
             }
-            cadena = cadena + "</select>";
-            $("#MC").replaceWith(cadena);
-        });
-    });
 
+        }
+        cadena = cadena + "</select>";
+        $("#MC").replaceWith(cadena);
+    });
 };
 
 ingresarEstudiante = function () {
@@ -75,13 +71,7 @@ ingresarEstudiante = function () {
     var pass = document.getElementById("Passwodlogin").value;
     var existe = false;
 
-    $.ajax({
-        url: "/Usuario/usuarioActual",
-        type: 'PUT',
-        data: JSON.stringify(carnet),
-        contentType: "application/json"
-    });
-
+    sessionStorage.setItem("usuario", carnet);
     $.get("/Usuario/getCorreo", function (data) {
 
         for (x in data) {
@@ -107,39 +97,38 @@ registrarClase = function () {
     var nclase = document.getElementById("nameClass").value;
     var descripcion = document.getElementById("descripcion").value;
 
-    $.get("/Usuario/getUserActual", function (data) {
+    data = sessionStorage.getItem("usuario");
+    sessionStorage.setItem("clase", nclase);
+    var clase = {
+        "NomUsuario": data,
+        "NombreClase": nclase,
+        "DescripcionClase": descripcion,
+        "Estudiantes": []
+    };
 
-        var clase = {
-            "NomUsuario": data,
-            "NombreClase": nclase,
-            "DescripcionClase": descripcion,
-            "Estudiantes": []
-        };
-
-        $.ajax({
-            url: "/Usuario/agregarClase",
-            type: 'PUT',
-            data: JSON.stringify(clase),
-            contentType: "application/json"
-        });
+    $.ajax({
+        url: "/Usuario/agregarClase",
+        type: 'PUT',
+        data: JSON.stringify(clase),
+        contentType: "application/json"
     });
-
     alert("Su clase ha sido registrada");
     location.href = "VistaProfesor.html";
 };
 
 misClases = function () {
-    $.get("/Usuario/getUserActual", function (user) {
-        $.get("/Usuario/getClases", function (data) {
-            var cadena = "<select name='MC' id='MC' class='MC'><option selected value='0'> Mis Clases </option>";
-            for (x in data) {
-                if (data[x].NomUsuario == user) {
-                    cadena = cadena + "<option value='" + data[x].NombreClase + "'>" + data[x].NombreClase + "</option>";
-                }
+
+    user = sessionStorage.getItem("usuario");
+    $.get("/Usuario/getClases", function (data) {
+        var cadena = "<select name='MC' id='MC' class='MC'><option selected value='0'> Mis Clases </option>";
+        for (x in data) {
+            console.log(data[x].NomUsuario, user);
+            if (data[x].NomUsuario == user) {
+                cadena = cadena + "<option value='" + data[x].NombreClase + "'>" + data[x].NombreClase + "</option>";
             }
-            cadena = cadena + "</select>";
-            $("#MC").replaceWith(cadena);
-        });
+        }
+        cadena = cadena + "</select>";
+        $("#MC").replaceWith(cadena);
     });
 };
 
@@ -161,58 +150,47 @@ misClasesE = function () {
 claseSeleccionada = function () {
 
     var p = document.getElementById("MC").value;
+    sessionStorage.setItem("clase", p);
+    alert(p);
     if (p == 0) {
         alert("Seleccione una de las opciones");
     } else {
+        
         location.href = "ClaseP.html";
     }
     console.log(p);
 
-    $.ajax({
-        url: "/Usuario/claseActual",
-        type: 'PUT',
-        data: JSON.stringify(p),
-        contentType: "application/json"
-    });
 };
 
-entrarClase = function (){
+entrarClase = function () {
+    var p = document.getElementById("MC").value;
+    sessionStorage.setItem("clase", p);
     location.href = "ClaseE.html";
 };
 
 claseSeleccionadaE = function () {
 
     var p = document.getElementById("MC").value;
-    $.get("/Usuario/getUserActual", function (user) {
 
-        alert("Se ha registrado correctamente a la clase " + p);
+    user = sessionStorage.getItem("usuario");
 
-        if (p == 0) {
-            alert("Seleccione una de las opciones");
-        } else {
+    alert("Se ha registrado correctamente a la clase " + p);
 
-            var promesa = $.ajax({
-                url: "/Usuario/claseActual",
-                type: 'PUT',
-                data: JSON.stringify(p),
-                contentType: "application/json"
-            });
+    if (p == 0) {
+        alert("Seleccione una de las opciones");
+    } else {
 
-            promesa.then(
-                    function () {
-                        $.ajax({
-                            url: "/Usuario/"+p,
-                            type: 'PUT',
-                            data: JSON.stringify(user),
-                            contentType: "application/json"
-                        });
-                    },
-                    function () {
-                        alert("NO");
-                    }
-            );
-        }
-    });
+        sessionStorage.setItem("clase", p);
+
+
+        $.ajax({
+            url: "/Usuario/" + p,
+            type: 'PUT',
+            data: JSON.stringify(user),
+            contentType: "application/json"
+        });
+
+    }
 };
 
 
@@ -227,9 +205,8 @@ detalles = function () {
             for (x in data) {
                 if (data[x].NombreClase == p) {
                     var nomx = data[x].NomUsuario;
-                    var s = nomx.substr(1, nomx.length - 2);
 
-                    var detalle = "Profesor: " + s;
+                    var detalle = "Profesor: " + nomx;
                     detalle = detalle + "\nDetalles: " + data[x].DescripcionClase;
                     alert(detalle);
                 }
