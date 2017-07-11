@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.eci.arsw.syncboard;
+package edu.eci.pgr.webEciBI;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
@@ -11,10 +11,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 
  */
 @SpringBootApplication
-public class SyncBoardApplication {
+public class WebEciBIApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SyncBoardApplication.class, args);
+        SpringApplication.run(WebEciBIApplication.class, args);
 
     }
 

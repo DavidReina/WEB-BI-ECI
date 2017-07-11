@@ -1,4 +1,4 @@
-package com.escuelaing.arsw.msgbroker.test;
+package com.escuelaing.pgr.msgbroker.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
