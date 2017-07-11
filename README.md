@@ -1,9 +1,8 @@
 
-Proyecto Arquitectura de Software - SyncBorad - 2017-1
+Proyecto De Grado
 
-Link Herokuapp : https://powerful-ridge-36246.herokuapp.com/
-Link Circleci : https://circleci.com/gh/DavidReina/SyncBoard
+Consideraciones de la futura implementación de una Solución de Business Intelligence SaaS aplicado en la Escuela Colombiana de Ingeniería Julio Garavito
 
-Ludwing Arturo Acevedo Sanchez
+Maria Paula Pinzón Cardozo
 
 David Sebastian Reina Castiblanco
